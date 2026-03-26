@@ -27,4 +27,4 @@ Run:
 notebook.ipynb
 
 ## Files
-- notebook.ipynb — full pipeline
+- notebook.ipynb -> full pipeline
