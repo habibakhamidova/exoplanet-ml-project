@@ -23,7 +23,10 @@ BLS failed to recover correct periods on short/noisy Kepler datasets, even when 
 - Small dataset (20 targets)  
 - Only two features used (depth and duration)  
 - No confirmed false positives (e.g., eclipsing binaries)  
-- Duration estimation is approximate  
+- Duration estimation is approximate
+
+## Files
+- notebook.ipynb -> full pipeline
 
 ## How to run
 
@@ -32,6 +35,3 @@ pip install lightkurve numpy pandas scikit-learn matplotlib
 
 Run:
 notebook.ipynb
-
-## Files
-- notebook.ipynb -> full pipeline
