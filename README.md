@@ -1,4 +1,4 @@
-# Exoplanet Transit Detection — Kepler Data
+# Exoplanet Transit Detection Kepler Data
 
 ## Overview
 This project evaluates whether simple features derived from Kepler light curves can distinguish transiting exoplanets from non-transit stars.
@@ -51,9 +51,9 @@ Feature importance:
 Simple feature-based approaches are insufficient for reliable transit detection. More advanced representations (e.g., shape modeling or time-series learning) are required.
 
 ## Repository Structure
-- `notebook.ipynb` — full pipeline  
-- `data/` — optional outputs  
-- `plots/` — scatter plots  
+- `notebook.ipynb` - full pipeline  
+- `data/` - optional outputs  
+- `plots/` - scatter plots  
 
 ## Author
 Habiba Khamidova
