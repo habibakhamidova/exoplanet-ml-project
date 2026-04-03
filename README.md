@@ -1,37 +1,59 @@
-# Exoplanet Transit Detection (Kepler Data)
-
-Independent project exploring limitations of classical exoplanet detection methods on real Kepler light curve data.
+# Exoplanet Transit Detection — Kepler Data
 
 ## Overview
+This project evaluates whether simple features derived from Kepler light curves can distinguish transiting exoplanets from non-transit stars.
 
-This project analyzes Kepler light curve data to detect exoplanet transits and evaluate the reliability of the Box Least Squares (BLS) algorithm on real, noisy datasets.
+## Dataset
+- 38 targets total
+  - Confirmed exoplanets (Kepler catalog)
+  - Non-transit stars (KIC)
+- Light curves: Kepler long cadence (2 quarters)
 
-## What was done
+## Preprocessing
+- Removed NaNs and outliers  
+- Flattened light curves (window=401)  
+- Normalized flux  
 
-- Tested BLS (Box Least Squares) period detection under multiple configurations  
-- Observed consistent BLS failure on noisy real data despite visible transit signals  
-- Extracted features: transit depth and duration  
-- Built a Random Forest classifier  
-- Achieved 83% accuracy on a held-out set of real NASA targets  
+## Methodology
 
-## Key insight
+### Period Handling
+- Planets: known orbital periods (NASA archive)
+- Non-transits: fixed reference period (2.0 days)
 
-BLS failed to recover correct periods on short/noisy Kepler datasets, even when transit signals were visually present. A simple ML model partially recovered the signal, but performance was limited by feature overlap between shallow transits and stellar variability.
+### Feature Extraction
+- **Depth** — minimum flux drop  
+- **SNR** — depth / noise standard deviation  
 
-## Limitations
+### Features Tested and Rejected
+- **Duration** — unstable under threshold and smoothing methods  
+- **Symmetry** — introduced noise and reduced model performance  
 
-- Small dataset (20 targets)  
-- Only two features used (depth and duration)  
-- No confirmed false positives (e.g., eclipsing binaries)  
-- Duration estimation is approximate
+### Model
+- Random Forest classifier  
+- Train/test split: 70/30  
+- Final features: **depth + SNR**
 
-## Files
-- notebook.ipynb -> full pipeline
+## Results
+- Accuracy: **0.92**
+- Recall (planets): **0.67**
 
-## How to run
+Feature importance:
+- Depth: 0.508  
+- SNR: 0.492  
 
-```bash
-pip install lightkurve numpy pandas scikit-learn matplotlib
+## Key Findings
+- BLS often fails to recover correct orbital periods  
+- Transit duration is not a stable feature under simple extraction  
+- Depth + SNR provide partial separation  
+- Significant overlap remains between classes  
 
-Run:
-notebook.ipynb
+## Conclusion
+Simple feature-based approaches are insufficient for reliable transit detection. More advanced representations (e.g., shape modeling or time-series learning) are required.
+
+## Repository Structure
+- `notebook.ipynb` — full pipeline  
+- `data/` — optional outputs  
+- `plots/` — scatter plots  
+
+## Author
+Habiba Khamidova
