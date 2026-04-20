@@ -40,13 +40,6 @@ It evaluates features extracted at:
 | Precision (planets) | 1.00 |
 | Recall (planets) | 0.67 |
 
-## Visualization
-
-![Depth vs SNR](plots/depth_vs_snr.png)
-
-## Paper
-
-Full paper available: `paper.pdf`
 
 ## Tech Stack
 
